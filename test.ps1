@@ -3,7 +3,7 @@ $buildLocator=$args[0]
 $headers = @{
     Authorization="Bearer eyJ0eXAiOiAiVENWMiJ9.ZzFicHh3NVBYeVJVZWgtSGROc0ZsWTRPWmw0.OWQ1N2JhNjMtMTNlNy00ODI2LThkY2UtOWMyNDUxNTZlODYz"
 }
-[xml]$buildInfo = (Invoke-WebRequest -URI http://localhost:3500/app/rest/builds/$buildLocator -Headers $headers).Content
+[xml]$buildInfo = (Invoke-WebRequest -URI http://localhost:3500/app/rest/builds/$buildLocator -UseBasicParsing -Headers $headers).Content
 
 $branchName = $buildInfo.build.revisions.revision.vcsBranchName
 $buildConfigId = $buildInfo.build.buildType.id
